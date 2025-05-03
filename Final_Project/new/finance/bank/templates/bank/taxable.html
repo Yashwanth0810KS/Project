@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Taxable Income Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body class="bg-light">
+
+
+<h4>Taxable Income Calculator</h4>
+<p class="mb-0 small">Computes taxable income after deductions and ₹50,000 standard deduction.</p>
+
+<div class="card-body">
+<form method="post">
+{% csrf_token %}
+<div class="mb-3">
+    <label>Gross Annual Income (₹)</label>
+    <input type="number" name="gross_income" class="form-control" required>
+</div>
+<div class="mb-3">
+    <label>Total Deductions (₹)</label>
+    <input type="number" name="deductions" class="form-control" required>
+</div>
+<button type="submit" class="btn btn-primary w-100">Calculate Taxable Income</button>
+</form>
+{% if error_message %}
+<div class="alert alert-danger mt-3 text-center">
+{{ error_message }}
+</div>
+{% endif %}
+{% if taxable_income is not None %}
+<div class="alert alert-success mt-4 text-center">
+    <strong>Taxable Income:</strong> ₹{{ taxable_income }}
+</div>
+{% endif %}
+</div>
+
+
+<a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+
+</body>
+</html>

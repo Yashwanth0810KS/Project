@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Estimation</title>
+
+</head>
+<body class="bg-light">
+<div class="container mt-5" style="max-width: 500px; margin: 0 auto;">
+    <div class="card shadow">
+         <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'deposit' %}">Deposit Money</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'withdraw' %}">Withdraw Money</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="calculatorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Financial Tool
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="calculatorDropdown">
+                            <li><a class="dropdown-item" href="{% url 'emi' %}">EMI Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sip' %}">SIP Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'fd' %}">FD Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'rd' %}">RD Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'estimate' %}">Retirement Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'home_loan_estimator_view' %}">Home_Loan Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'credit_card_interest_view' %}">Credit Card Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'taxable' %}">Tax Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'simple_budget_planner_view' %}">Budget Calculator</a></li>
+                            <li><a class="dropdown-item" href="{% url 'net_worth_view' %}">Net Worth Calculator</a></li>
+                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'loan_form_page' %}">Loan amount estimation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div class="card-header bg-primary text-white">
+            <h3>Loan Estimation Tool</h3>
+        </div>
+
+        <div class="card-body">
+            <form method="get" action="/predict-loan/">
+                <div class="mb-3"><label>Age</label><input type="number" name="Age" class="form-control" required></div>
+                <div class="mb-3"><label>Monthly Income</label><input type="number" name="Monthly_Income" class="form-control" required></div>
+                <div class="mb-3"><label>Credit Score</label><input type="number" name="Credit_Score" class="form-control" required></div>
+                <div class="mb-3"><label>Loan Tenure (Years)</label><input type="number" name="Loan_Tenure_Years" class="form-control" required></div>
+                <div class="mb-3"><label>Existing Loan Amount</label><input type="number" name="Existing_Loan_Amount" class="form-control" required></div>
+                <div class="mb-3"><label>Number of Dependents</label><input type="number" name="Num_of_Dependents" class="form-control" required></div>
+                <button type="submit" class="btn btn-success">Estimate Loan</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="text-center mt-3">
+    <a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+</head>
+<body class="bg-light">
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<h4 class="mb-4 text-center">Register</h4>
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<div class="d-grid mt-3">
+    <button type="submit" class="btn" style="background-color: #003366; color: white;">Register</button>
+</div>
+</form>
+
+<p class="text-center mt-3">
+Already have an account? <a href="{% url 'login' %}">Login</a>
+</p>
+
+
+
+</body>
+</html>

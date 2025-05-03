@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Budget Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body class="bg-light">
+
+<h4>Simple Budget Planner</h4>
+<p class="mb-0 small">Suggests saving and investing plan based on your income and expenses</p>
+
+<div class="card-body">
+<form method="post">
+{% csrf_token %}
+<div class="mb-3">
+    <label>Monthly Income (₹)</label>
+    <input type="number" name="monthly_income" class="form-control" min="1"  required>
+</div>
+<div class="mb-3">
+    <label>Monthly Expenses (₹)</label>
+    <input type="number" name="monthly_expenses" class="form-control" min="0"  required>
+</div>
+<button type="submit" class="btn btn-primary w-100">Plan My Budget</button>
+</form>
+{% if error_message %}
+<div class="alert alert-danger mt-3 text-center">
+{{ error_message }}
+</div>
+{% endif %}
+{% if result %}
+{% if result.surplus > 0 %}
+<div class="alert alert-success mt-4 text-center">
+{% else %}
+<div class="alert alert-danger mt-4 text-center">
+{% endif %}
+<strong>{{ result.message }}</strong><br>
+<hr>
+<p>💰 Surplus: ₹{{ result.surplus }}</p>
+{% if result.surplus > 0 %}
+    <p>🔒 Suggested Savings: ₹{{ result.savings }}</p>
+    <p>📈 Suggested Investments: ₹{{ result.investments }}</p>
+    <p>💸 Free to Use: ₹{{ result.free_to_use }}</p>
+{% endif %}
+</div>
+{% endif %}
+
+</div>
+</div>
+
+
+<a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+
+</body>
+</html>

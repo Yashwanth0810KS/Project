@@ -1,0 +1,33 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Prediction Result</title>
+
+</head>
+<body class="bg-light">
+
+{% load humanize %}
+
+
+            <h3>Prediction Result</h3>
+
+        <div class="card-body">
+            <h4 class="mb-3">Your Estimated Loan Amount is:</h4>
+            <!-- Display loan amount in INR with formatting -->
+            <h2 class="text-primary">
+                ₹{{ prediction|floatformat:2|intcomma }}
+            </h2>
+            <a href="/" class="btn btn-outline-primary mt-4">Estimate Another Loan</a>
+        </div>
+
+
+<hr>
+<h4>Insights from Dataset</h4>
+
+
+    <a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+
+</body>
+</html>

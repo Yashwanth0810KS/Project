@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIP Calculator (No JavaScript)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body class="bg-light">
+
+
+<h4>SIP Calculator</h4>
+
+<div class="card-body">
+<form method="post" action="">
+{% csrf_token %}
+<div class="mb-3">
+    <label for="sip" class="form-label">Monthly SIP Amount (₹)</label>
+    <input type="number" id="sip" name="sip" class="form-control" placeholder="e.g., 5000" required>
+</div>
+<div class="mb-3">
+    <label for="rate" class="form-label">Annual Return Rate (%)</label>
+    <input type="number" id="rate" name="rate" class="form-control" placeholder="e.g., 12" required>
+</div>
+<div class="mb-3">
+    <label for="years" class="form-label">Investment Duration (Years)</label>
+    <input type="number" id="years" name="years" class="form-control" placeholder="e.g., 10" required>
+</div>
+<button type="submit" class="btn btn-primary w-100">Calculate</button>
+</form>
+{% if error_message %}
+<div class="alert alert-danger mt-3">{{ error_message }}</div>
+{% endif %}
+{% if future_value %}
+<div class="alert alert-success mt-4 text-center">
+    <h5>Future Value: ₹{{ future_value }}</h5>
+</div>
+{% endif %}
+
+</div>
+
+<a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+
+</body>
+</html>

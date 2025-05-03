@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Calculator</title>
+</head>
+<body class="bg-light">
+
+<h4>EMI Calculator</h4>
+
+<div class="card-body">
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="principal" class="form-label">Principal Amount (₹)</label>
+        <input type="number" class="form-control" name="principal" min="1" step="0.01" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="rate" class="form-label">Annual Interest Rate (%)</label>
+        <input type="number" class="form-control" name="rate" min="0" step="0.01" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="tenure" class="form-label">Tenure (in years)</label>
+        <input type="number" class="form-control" name="tenure" min="1" required>
+    </div>
+
+
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Calculate EMI</button>
+    </div>
+</form>
+{% if error_message %}
+<div class="alert alert-danger">
+    {{ error_message }}
+</div>
+{% endif %}
+</div>
+{% if emi is not None%}
+<div class="alert alert-success mt-4 text-center">
+    <h5>Your Monthly EMI: ₹{{ emi }}</h5>
+    {% endif %}
+</div>
+
+<a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+
+</body>
+</html>

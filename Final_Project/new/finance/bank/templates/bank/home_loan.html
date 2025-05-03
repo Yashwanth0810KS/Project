@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Loan Eligibility Estimator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+                    <h4>Home Loan Eligibility Estimator</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label>Monthly Income (₹)</label>
+                            <input type="number" name="monthly_income" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Monthly Expenses (₹)</label>
+                            <input type="number" name="monthly_expenses" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Loan Term (Years)</label>
+                            <input type="number" name="loan_term_years" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Interest Rate (%)</label>
+                            <input type="number" name="interest_rate" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Estimate Loan Amount</button>
+                    </form>
+                    {% if error_message %}
+                    <div class="alert alert-danger mt-3">
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+                    {% if loan_amount %}
+                        <div class="alert alert-success mt-4 text-center">
+                            <h5>💰 Estimated Loan Amount: ₹{{ loan_amount }}</h5>
+                        </div>
+                    {% endif %}
+                </div>
+
+
+
+    <a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+
+</body>
+</html>

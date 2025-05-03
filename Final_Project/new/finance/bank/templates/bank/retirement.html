@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retirement Estimator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body class="bg-light">
+
+
+<h4>Retirement Savings Estimator</h4>
+
+<div class="card-body">
+<form method="post">
+{% csrf_token %}
+<div class="mb-3">
+    <label>Current Savings (₹)</label>
+    <input type="number" name="current_savings" class="form-control" required>
+</div>
+<div class="mb-3">
+    <label>Monthly Contribution (₹)</label>
+    <input type="number" name="monthly_contribution" class="form-control" required>
+</div>
+<div class="mb-3">
+    <label>Expected Annual Return (%)</label>
+    <input type="number" name="annual_return" class="form-control" required>
+</div>
+<div class="mb-3">
+    <label>Years Until Retirement</label>
+    <input type="number" name="years" class="form-control" required>
+</div>
+<button type="submit" class="btn btn-primary w-100">Calculate Corpus</button>
+</form>
+{% if error_message %}
+<div class="alert alert-danger mt-3">{{ error_message }}</div>
+{% endif %}
+{% if estimated_corpus %}
+<div class="alert alert-primary mt-4 text-center">
+    <h5>💰 Estimated Retirement Corpus: ₹{{ estimated_corpus }}</h5>
+</div>
+{% endif %}
+</div>
+
+
+<a href="{% url 'dashboard' %}" class="text-decoration-none">Back to Dashboard</a>
+
+</body>
+</html>

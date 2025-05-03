@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+</head>
+<body>
+
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'deposit' %}">Deposit Money</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'withdraw' %}">Withdraw Money</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="calculatorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Financial Tool
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="calculatorDropdown">
+                    <li><a class="dropdown-item" href="{% url 'emi' %}">EMI Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'sip' %}">SIP Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'fd' %}">FD Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'rd' %}">RD Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'estimate' %}">Retirement Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'home_loan_estimator_view' %}">Home_Loan Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'credit_card_interest_view' %}">Credit Card Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'taxable' %}">Tax Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'simple_budget_planner_view' %}">Budget Calculator</a></li>
+                    <li><a class="dropdown-item" href="{% url 'net_worth_view' %}">Net Worth Calculator</a></li>
+                </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'loan_form_page' %}">Loan amount estimation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            </li>
+        </ul>
+    </div>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="text-center">
+            <h2>Welcome, {{ user.username }}!</h2>
+            <h3>Account Balance:  ₹{{ account.balance }}</h3>
+        </div>
+
+        <div class="mt-4">
+            <h4>Transaction History:</h4>
+            <ul class="list-group">
+                {% for transaction in transactions %}
+                    <li class="list-group-item">
+                        {{ transaction.date }} - {{ transaction.transaction_type|title }}: ₹{{ transaction.amount }}
+                    </li>
+                {% empty %}
+                    <li class="list-group-item text-muted">No transactions yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
